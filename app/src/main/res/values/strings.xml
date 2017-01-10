@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Louis de Funes</string>
+    <string name="app_subname">Sons &amp; Bruitages cultes</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="data_imported" translatable="false">com.paocorp.louisdefunes.mhImportedData</string>
+    <string name="action_cancel">Annuler</string>
+
+    <string name="interstitial" translatable="false">ca-app-pub-2669557761715669/9024493236</string>
+    <string name="bann" translatable="false">ca-app-pub-2669557761715669/1501226436</string>
+    <string name="store_url" translatable="false">https://play.google.com/store/apps/details?id=com.paocorp.louisdefunes</string>
+    <string name="site_url" translatable="false">paocorp.com</string>
+    <string name="facebook_app_id" translatable="false">914409908597657</string>
+    <string name="app_icon_url" translatable="false">https://paocorp.com/res/images/ico/ldf.png</string>
+    <string name="banner_bottom" translatable="false">ca-app-pub-2669557761715669/4195842034</string>
+    <string name="rate_app">Noter cette application</string>
+    <string name="share">Partager</string>
+    <string name="share_fb">Partager sur Facebook</string>
+    <string name="fb_ContentDesc">Sons et bruitages cultes de Louis de Funès sur Android !</string>
+    <string name="dialog_title">Définir comme :</string>
+    <string name="setRingtone">Sonnerie</string>
+    <string name="setNotif">Notification</string>
+    <string name="ringtoneApplied">Nouvelle sonnerie appliquée avec succès !</string>
+    <string name="notifApplied">Nouveau son de notification appliqué avec succès !</string>
+</resources>
