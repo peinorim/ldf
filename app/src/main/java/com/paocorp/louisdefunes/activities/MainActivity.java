@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
 
         ImageView contentMain = (ImageView) findViewById(R.id.mainImg);
         Random rand = new Random();
-        int res = rand.nextInt(10 - 1 + 1) + 1;
+        int res = rand.nextInt(11 - 1 + 1) + 1;
         contentMain.setImageResource(getResources().getIdentifier("img_" + res, "drawable", getPackageName()));
 
         listLDFSound = (ArrayList<LDFSound>) getIntent().getSerializableExtra("listLDFSound");

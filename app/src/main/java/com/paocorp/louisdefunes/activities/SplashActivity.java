@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity implements NavigationView.
 
         ImageView splashImg = (ImageView) findViewById(R.id.splashImg);
         Random rand = new Random();
-        int res = rand.nextInt(10 - 1 + 1) + 1;
+        int res = rand.nextInt(11 - 1 + 1) + 1;
         splashImg.setImageResource(getResources().getIdentifier("img_" + res, "drawable", getPackageName()));
 
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);

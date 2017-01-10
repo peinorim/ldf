@@ -126,7 +126,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "(54,'Eeeeh!','audio_54','0')," +
                 "(55,'Ein salopard ein gross salopard!','audio_55','0')," +
                 "(56,'Hiiinin bing','audio_56','0')," +
-                "(57,'Hiiinin plof','audio_57','0')";
+                "(57,'Hiiinin plof','audio_57','0')," +
+                "(58,'Ma biche c''est un malentendu','audio_58','0')," +
+                "(59,'Tu mens !','audio_59','0')," +
+                "(60,'Ma biche je suis trop seul !','audio_60','0')," +
+                "(61,'Ma biche','audio_61','0')," +
+                "(62,'Ma biche je peux tout vous expliquer !','audio_62','0')," +
+                "(63,'Oh mon eau minérale !','audio_63','0')";
+
 
     }
 }
