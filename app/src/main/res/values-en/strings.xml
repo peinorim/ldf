@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Louis de Funès</string>
+    <string name="share_fb">Share on Facebook</string>
+    <string name="share">Share</string>
+    <string name="setRingtone">Ringtone</string>
+    <string name="setNotif">Notification</string>
+    <string name="ringtoneApplied">Ringtone successfully applied !</string>
+    <string name="notifApplied">Notification sound successfully applied !</string>
+    <string name="fb_ContentDesc">Louis de Funès Soundboard</string>
+    <string name="dialog_title">Define as :</string>
+    <string name="app_subname">Soundboard</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="rate_app">Rate this application</string>
+</resources>

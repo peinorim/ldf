@@ -25,7 +25,8 @@
         android:layout_height="wrap_content"
         android:paddingTop="10sp"
         android:text="@string/app_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textView"
@@ -33,6 +34,6 @@
         android:layout_height="wrap_content"
         android:autoLink="web"
         android:text="@string/site_url"
-        android:textColorLink="@color/white" />
+        android:textColorLink="@color/black" />
 
 </LinearLayout>

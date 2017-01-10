@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Louis de Funès</string>
+    <string name="app_subname">Sons &amp; Bruitages cultes</string>
+    <string name="action_cancel">Annuler</string>
+
+    <string name="rate_app">Noter cette application</string>
+    <string name="share">Partager</string>
+    <string name="share_fb">Partager sur Facebook</string>
+    <string name="fb_ContentDesc">Sons et bruitages cultes de Louis de Funès sur Android !</string>
+    <string name="dialog_title">Définir comme :</string>
+    <string name="setRingtone">Sonnerie</string>
+    <string name="setNotif">Notification</string>
+    <string name="ringtoneApplied">Sonnerie appliquée avec succès !</string>
+    <string name="notifApplied">Son de notification appliqué avec succès !</string>
+    <string name="action_settings">Paramètres</string>
+</resources>

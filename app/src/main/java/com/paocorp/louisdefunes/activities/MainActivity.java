@@ -3,6 +3,8 @@ package com.paocorp.louisdefunes.activities;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -79,7 +81,9 @@ public class MainActivity extends AppCompatActivity
         adapter = new SoundListAdapter(this, listLDFSound);
         soundListView.setAdapter(adapter);
 
-        launchInterstitial();
+        if (isNetworkAvailable()) {
+            launchInterstitial();
+        }
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
@@ -173,5 +177,12 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
+    }
+
+    protected boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

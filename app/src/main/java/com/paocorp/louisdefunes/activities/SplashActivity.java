@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.paocorp.louisdefunes.R;
 import com.paocorp.louisdefunes.db.DatabaseHelper;
@@ -18,7 +17,6 @@ import com.paocorp.louisdefunes.db.LDFSoundHelper;
 import com.paocorp.louisdefunes.models.LDFSound;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
 public class SplashActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

@@ -2,12 +2,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollView"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:fillViewport="true">
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -25,24 +25,34 @@
 
         <Button
             android:id="@+id/setRingtone"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_below="@+id/dialogTitle"
-            android:text="@string/setRingtone" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10sp"
+            android:width="300sp"
+            android:background="@drawable/btn_ringtone"
+            android:text="@string/setRingtone"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/setNotif"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_below="@+id/setRingtone"
-            android:text="@string/setNotif" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10sp"
+            android:width="300sp"
+            android:background="@drawable/btn_ringtone"
+            android:text="@string/setNotif"
+            android:textColor="@color/white" />
 
         <RelativeLayout
             android:id="@+id/rel_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/setNotif"
-            android:layout_marginTop="10sp">
+            android:layout_marginTop="20sp">
 
             <com.google.android.gms.ads.AdView
                 android:id="@+id/banner_bottom"

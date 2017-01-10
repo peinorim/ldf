@@ -19,7 +19,7 @@ public class LDFSoundHelper extends DatabaseHelper {
 
         ArrayList<LDFSound> allLDFSounds = new ArrayList<LDFSound>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_SOUNDS + " ORDER BY " + COLUMN_SOUND_NAME + " ASC";
+        String selectQuery = "SELECT * FROM " + TABLE_SOUNDS + " ORDER BY " + COLUMN_SOUND_FAVORITE + "  DESC, " + COLUMN_SOUND_NAME + " ASC";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
