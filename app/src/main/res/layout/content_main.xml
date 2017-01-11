@@ -9,7 +9,7 @@
     android:paddingRight="10sp"
     android:paddingTop="5sp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.paocorp.louisdefunes.activities.MainActivity"
+    tools:context="com.paocorp.defunessoundboard.activities.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
     <ImageView
@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:alpha="0.5"
+        android:alpha="0.4"
         tools:ignore="ContentDescription" />
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"

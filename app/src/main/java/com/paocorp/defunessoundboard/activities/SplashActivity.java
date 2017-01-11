@@ -1,4 +1,4 @@
-package com.paocorp.louisdefunes.activities;
+package com.paocorp.defunessoundboard.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,10 +11,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.paocorp.louisdefunes.R;
-import com.paocorp.louisdefunes.db.DatabaseHelper;
-import com.paocorp.louisdefunes.db.LDFSoundHelper;
-import com.paocorp.louisdefunes.models.LDFSound;
+import com.paocorp.defunessoundboard.R;
+import com.paocorp.defunessoundboard.db.DatabaseHelper;
+import com.paocorp.defunessoundboard.db.LDFSoundHelper;
+import com.paocorp.defunessoundboard.models.LDFSound;
 
 import java.util.ArrayList;
 import java.util.Random;

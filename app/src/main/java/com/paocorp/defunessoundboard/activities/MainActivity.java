@@ -1,4 +1,4 @@
-package com.paocorp.louisdefunes.activities;
+package com.paocorp.defunessoundboard.activities;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -27,10 +27,10 @@ import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.paocorp.louisdefunes.R;
-import com.paocorp.louisdefunes.adapters.SoundListAdapter;
-import com.paocorp.louisdefunes.db.LDFSoundHelper;
-import com.paocorp.louisdefunes.models.LDFSound;
+import com.paocorp.defunessoundboard.R;
+import com.paocorp.defunessoundboard.adapters.SoundListAdapter;
+import com.paocorp.defunessoundboard.db.LDFSoundHelper;
+import com.paocorp.defunessoundboard.models.LDFSound;
 
 import java.util.ArrayList;
 import java.util.Random;

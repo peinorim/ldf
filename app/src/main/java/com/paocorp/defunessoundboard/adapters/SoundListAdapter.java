@@ -1,4 +1,4 @@
-package com.paocorp.louisdefunes.adapters;
+package com.paocorp.defunessoundboard.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,13 +20,14 @@ import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.paocorp.louisdefunes.R;
-import com.paocorp.louisdefunes.db.LDFSoundHelper;
-import com.paocorp.louisdefunes.models.LDFSound;
+import com.paocorp.defunessoundboard.R;
+import com.paocorp.defunessoundboard.db.LDFSoundHelper;
+import com.paocorp.defunessoundboard.models.LDFSound;
 
 import java.util.List;
 
@@ -37,7 +38,6 @@ public class SoundListAdapter extends BaseAdapter {
     private Context context;
     private List<LDFSound> ldfSounds;
     private LDFSoundHelper ldfSoundHelper;
-    private AdView adView;
 
     public SoundListAdapter(Context context, List<LDFSound> ldfSounds) {
         this.context = context;
@@ -74,53 +74,59 @@ public class SoundListAdapter extends BaseAdapter {
             TextView soundName = (TextView) convertView.findViewById(R.id.soundName);
             soundName.setText(ldfSound.getName());
             soundName.setTag(ldfSound.getId());
-            final MediaPlayer mp = MediaPlayer.create(context, context.getResources().getIdentifier(ldfSound.getRes(), "raw", context.getPackageName()));
-            soundName.setOnClickListener(new View.OnClickListener() {
+            int rawID = context.getResources().getIdentifier(ldfSound.getRes(), "raw", context.getPackageName());
+            if (rawID != 0) {
+                final MediaPlayer mp = MediaPlayer.create(context, rawID);
+                soundName.setOnClickListener(new View.OnClickListener() {
 
-                public void onClick(View v) {
-                    if (mp.isPlaying()) {
-                        mp.stop();
-                    } else {
-                        mp.start();
-                    }
-                }
-            });
-
-            soundName.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    final int ldfSoundID = (Integer) v.getTag();
-                    View parent = (View) v.getParent();
-                    createRingtoneDialog(parent, ldfSoundID);
-                    return true;
-                }
-            });
-
-            ImageButton fav = (ImageButton) convertView.findViewById(R.id.soundFavorite);
-            fav.setTag(ldfSound.getId());
-            if (ldfSound.isFavorite() == 1) {
-                fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
-            }
-            fav.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    final int ldfSoundID = (Integer) v.getTag();
-                    final View parent = (View) v.getParent();
-                    LDFSound ldfSound1 = ldfSoundHelper.getLDFSoundById(ldfSoundID);
-                    if (ldfSound1.isFavorite() == 0) {
-                        ldfSound1.setFavorite(1);
-                    } else {
-                        ldfSound1.setFavorite(0);
-                    }
-                    if (ldfSoundHelper.updateLDFSound(ldfSound1) == 1) {
-                        ImageButton fav = (ImageButton) parent.findViewById(R.id.soundFavorite);
-                        if (ldfSound1.isFavorite() == 1) {
-                            fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
+                    public void onClick(View v) {
+                        if (mp.isPlaying()) {
+                            mp.stop();
                         } else {
-                            fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_24dp));
+                            mp.start();
                         }
                     }
+                });
+
+                soundName.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        final int ldfSoundID = (Integer) v.getTag();
+                        View parent = (View) v.getParent();
+                        createRingtoneDialog(parent, ldfSoundID);
+                        return true;
+                    }
+                });
+
+                ImageButton fav = (ImageButton) convertView.findViewById(R.id.soundFavorite);
+                fav.setTag(ldfSound.getId());
+                if (ldfSound.isFavorite() == 1) {
+                    fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
                 }
-            });
+                fav.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        final int ldfSoundID = (Integer) v.getTag();
+                        final View parent = (View) v.getParent();
+                        LDFSound ldfSound1 = ldfSoundHelper.getLDFSoundById(ldfSoundID);
+                        if (ldfSound1.isFavorite() == 0) {
+                            ldfSound1.setFavorite(1);
+                        } else {
+                            ldfSound1.setFavorite(0);
+                        }
+                        if (ldfSoundHelper.updateLDFSound(ldfSound1) == 1) {
+                            ImageButton fav = (ImageButton) parent.findViewById(R.id.soundFavorite);
+                            if (ldfSound1.isFavorite() == 1) {
+                                fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
+                            } else {
+                                fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_24dp));
+                            }
+                        }
+                    }
+                });
+            } else {
+                convertView.setLayoutParams(new ListView.LayoutParams(-1,1));
+                convertView.setVisibility(View.GONE);
+            }
         }
 
         return convertView;
@@ -139,6 +145,9 @@ public class SoundListAdapter extends BaseAdapter {
                     dialog.dismiss();
                 }
             });
+
+            TextView dialogTitle = (TextView) v.findViewById(R.id.dialogTitle);
+            dialogTitle.setText(context.getResources().getString(R.string.dialog_title, ldfSound1.getName()));
 
             final AlertDialog alert = builder.create();
             WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
@@ -197,7 +206,7 @@ public class SoundListAdapter extends BaseAdapter {
             alert.show();
             alert.getWindow().setAttributes(lp);
             if (isNetworkAvailable()) {
-                adView = (AdView) v.findViewById(R.id.banner_bottom);
+                AdView adView = (AdView) v.findViewById(R.id.banner_bottom);
                 AdRequest adRequest = new AdRequest.Builder().build();
                 adView.loadAd(adRequest);
             }

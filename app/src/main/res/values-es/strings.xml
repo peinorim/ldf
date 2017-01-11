@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Louis de Funès</string>
+    <string name="app_name">Sonidos de Louis de Funès</string>
     <string name="fb_ContentDesc">Sonidos de Louis de Funès</string>
     <string name="action_cancel">Cancelar</string>
     <string name="app_subname">Sonidos esenciales</string>
-    <string name="dialog_title">Definir como :</string>
+    <string name="dialog_title">%1$s\nDefinir como :</string>
     <string name="notifApplied">¡El sonido de notificación se ha aplicado correctamente!</string>
     <string name="ringtoneApplied">Tono aplicado correctamente!</string>
     <string name="setNotif">Notificación</string>
