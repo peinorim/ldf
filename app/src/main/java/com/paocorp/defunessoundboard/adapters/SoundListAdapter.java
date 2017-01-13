@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.app.AlertDialog;
+import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -38,11 +38,16 @@ public class SoundListAdapter extends BaseAdapter {
     private Context context;
     private List<LDFSound> ldfSounds;
     private LDFSoundHelper ldfSoundHelper;
+    private String packageRes;
+    private String packageRaw;
+    MediaPlayer mp;
 
     public SoundListAdapter(Context context, List<LDFSound> ldfSounds) {
         this.context = context;
         this.ldfSounds = ldfSounds;
         this.ldfSoundHelper = new LDFSoundHelper(context);
+        packageRes = "package:" + context.getPackageName();
+        packageRaw = "android.resource://" + context.getPackageName() + "/raw/";
     }
 
     @Override
@@ -76,10 +81,17 @@ public class SoundListAdapter extends BaseAdapter {
             soundName.setTag(ldfSound.getId());
             int rawID = context.getResources().getIdentifier(ldfSound.getRes(), "raw", context.getPackageName());
             if (rawID != 0) {
-                final MediaPlayer mp = MediaPlayer.create(context, rawID);
                 soundName.setOnClickListener(new View.OnClickListener() {
 
                     public void onClick(View v) {
+                        final int ldfSoundID = (Integer) v.getTag();
+                        LDFSound ldfSound1 = ldfSoundHelper.getLDFSoundById(ldfSoundID);
+                        int rawID = context.getResources().getIdentifier(ldfSound1.getRes(), "raw", context.getPackageName());
+                        if (mp != null) {
+                            mp.release();
+                            mp = null;
+                        }
+                        mp = MediaPlayer.create(context, rawID);
                         if (mp.isPlaying()) {
                             mp.stop();
                         } else {
@@ -124,7 +136,7 @@ public class SoundListAdapter extends BaseAdapter {
                     }
                 });
             } else {
-                convertView.setLayoutParams(new ListView.LayoutParams(-1,1));
+                convertView.setLayoutParams(new ListView.LayoutParams(-1, 1));
                 convertView.setVisibility(View.GONE);
             }
         }
@@ -161,15 +173,15 @@ public class SoundListAdapter extends BaseAdapter {
                     if (Build.VERSION.SDK_INT >= 23) {
                         if (!android.provider.Settings.System.canWrite(context)) {
                             Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-                            intent.setData(Uri.parse("package:com.paocorp.louisdefunes"));
+                            intent.setData(Uri.parse(packageRes));
                             context.startActivity(intent);
                         } else {
-                            Uri path = Uri.parse("android.resource://com.paocorp.louisdefunes/raw/" + ldfSound1.getRes());
+                            Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
                             RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE, path);
                             RingtoneManager.getRingtone(context, path).play();
                         }
                     } else {
-                        Uri path = Uri.parse("android.resource://com.paocorp.louisdefunes/raw/" + ldfSound1.getRes());
+                        Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
                         RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE, path);
                         RingtoneManager.getRingtone(context, path).play();
                     }
@@ -185,15 +197,15 @@ public class SoundListAdapter extends BaseAdapter {
                     if (Build.VERSION.SDK_INT >= 23) {
                         if (!android.provider.Settings.System.canWrite(context)) {
                             Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-                            intent.setData(Uri.parse("package:com.paocorp.louisdefunes"));
+                            intent.setData(Uri.parse(packageRes));
                             context.startActivity(intent);
                         } else {
-                            Uri path = Uri.parse("android.resource://com.paocorp.louisdefunes/raw/" + ldfSound1.getRes());
+                            Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
                             RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_NOTIFICATION, path);
                             RingtoneManager.getRingtone(context, path).play();
                         }
                     } else {
-                        Uri path = Uri.parse("android.resource://com.paocorp.louisdefunes/raw/" + ldfSound1.getRes());
+                        Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
                         RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_NOTIFICATION, path);
                         RingtoneManager.getRingtone(context, path).play();
                     }
