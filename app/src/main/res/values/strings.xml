@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sons Louis de Funès</string>
+    <string name="app_name">Louis de Funès</string>
     <string name="app_subname">Sons &amp; Bruitages cultes</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
@@ -9,7 +9,7 @@
 
     <string name="interstitial" translatable="false">ca-app-pub-2669557761715669/9024493236</string>
     <string name="bann" translatable="false">ca-app-pub-2669557761715669/1501226436</string>
-    <string name="store_url" translatable="false">https://play.google.com/store/apps/details?id=com.paocorp.louisdefunes</string>
+    <string name="store_url" translatable="false">https://play.google.com/store/apps/details?id=com.paocorp.defunessoundboard</string>
     <string name="site_url" translatable="false">paocorp.com</string>
     <string name="facebook_app_id" translatable="false">914409908597657</string>
     <string name="app_icon_url" translatable="false">https://paocorp.com/res/images/ico/ldf.png</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Sonidos de Louis de Funès</string>
+    <string name="app_name">Louis de Funès</string>
     <string name="fb_ContentDesc">Sonidos de Louis de Funès</string>
     <string name="action_cancel">Cancelar</string>
     <string name="app_subname">Sonidos esenciales</string>
