@@ -7,7 +7,7 @@ android {
         applicationId "com.paocorp.defunessoundboard"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 4
+        versionCode 6
         versionName "1.0"
     }
     buildTypes {
@@ -23,5 +23,5 @@ dependencies {
     compile 'com.android.support:design:25.1.0'
     compile 'com.android.support:support-v4:25.1.0'
     compile 'com.google.android.gms:play-services-ads:10.0.1'
-    compile 'com.facebook.android:facebook-android-sdk:4.14.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.18.0'
 }

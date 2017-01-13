@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ import com.paocorp.defunessoundboard.db.LDFSoundHelper;
 import com.paocorp.defunessoundboard.models.LDFSound;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -61,11 +63,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         LayoutInflater.from(this).inflate(R.layout.nav_header_main, navigationView);
-
-        /*ImageView contentMain = (ImageView) findViewById(R.id.mainImg);
-        Random rand = new Random();
-        int res = rand.nextInt(11 - 1 + 1) + 1;
-        contentMain.setImageResource(getResources().getIdentifier("img_" + res, "drawable", getPackageName()));*/
 
         listLDFSound = (ArrayList<LDFSound>) getIntent().getSerializableExtra("listLDFSound");
 
