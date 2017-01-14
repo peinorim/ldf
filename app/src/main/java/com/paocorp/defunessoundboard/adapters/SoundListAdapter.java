@@ -73,6 +73,8 @@ public class SoundListAdapter extends BaseAdapter {
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
         convertView = mInflater.inflate(R.layout.sound_item, null);
+        final ViewHolder holder = new ViewHolder();
+        convertView.setTag(holder);
 
         if (ldfSound != null && !ldfSound.getName().isEmpty()) {
 
@@ -112,32 +114,38 @@ public class SoundListAdapter extends BaseAdapter {
 
                 ImageButton fav = (ImageButton) convertView.findViewById(R.id.soundFavorite);
                 fav.setTag(ldfSound.getId());
+                holder.fav = fav;
+                holder.fav.setTag(ldfSounds.get(position));
                 if (ldfSound.isFavorite() == 1) {
-                    fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
+                    holder.fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
                 }
                 fav.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        final int ldfSoundID = (Integer) v.getTag();
-                        final View parent = (View) v.getParent();
-                        LDFSound ldfSound1 = ldfSoundHelper.getLDFSoundById(ldfSoundID);
+                        LDFSound ldfSound1 = (LDFSound) v.getTag();
                         if (ldfSound1.isFavorite() == 0) {
                             ldfSound1.setFavorite(1);
                         } else {
                             ldfSound1.setFavorite(0);
                         }
                         if (ldfSoundHelper.updateLDFSound(ldfSound1) == 1) {
-                            ImageButton fav = (ImageButton) parent.findViewById(R.id.soundFavorite);
                             if (ldfSound1.isFavorite() == 1) {
-                                fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
+                                holder.fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
                             } else {
-                                fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_24dp));
+                                holder.fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_24dp));
                             }
                         }
+
                     }
                 });
             } else {
                 convertView.setLayoutParams(new ListView.LayoutParams(-1, 1));
                 convertView.setVisibility(View.GONE);
+            }
+            ViewHolder holderZ = (ViewHolder) convertView.getTag();
+            if (ldfSounds.get(position).isFavorite() == 1) {
+                holderZ.fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
+            } else {
+                holderZ.fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_24dp));
             }
         }
 
@@ -230,5 +238,9 @@ public class SoundListAdapter extends BaseAdapter {
                 = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    static class ViewHolder {
+        ImageButton fav;
     }
 }
