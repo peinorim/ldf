@@ -1,4 +1,4 @@
-package com.paocorp.defunessoundboard.activities;
+package com.paocorp.defunessounds.activities;
 
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -16,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,13 +26,12 @@ import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.paocorp.defunessoundboard.R;
-import com.paocorp.defunessoundboard.adapters.SoundListAdapter;
-import com.paocorp.defunessoundboard.db.LDFSoundHelper;
-import com.paocorp.defunessoundboard.models.LDFSound;
+import com.paocorp.defunessounds.R;
+import com.paocorp.defunessounds.adapters.SoundListAdapter;
+import com.paocorp.defunessounds.db.LDFSoundHelper;
+import com.paocorp.defunessounds.models.LDFSound;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

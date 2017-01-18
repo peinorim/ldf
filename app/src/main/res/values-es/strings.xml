@@ -13,4 +13,6 @@
     <string name="share_fb">Compartir en Facebook</string>
     <string name="action_settings">Ajustes</string>
     <string name="rate_app">Califica esta aplicación</string>
+    <string name="setAlarm">Alarme</string>
+    <string name="alarmApplied">Alarma aplicado con éxito!</string>
 </resources>

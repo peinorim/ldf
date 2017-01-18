@@ -1,4 +1,4 @@
-package com.paocorp.defunessoundboard.models;
+package com.paocorp.defunessounds.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

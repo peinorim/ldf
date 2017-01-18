@@ -1,4 +1,4 @@
-package com.paocorp.defunessoundboard.adapters;
+package com.paocorp.defunessounds.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,9 +25,9 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.paocorp.defunessoundboard.R;
-import com.paocorp.defunessoundboard.db.LDFSoundHelper;
-import com.paocorp.defunessoundboard.models.LDFSound;
+import com.paocorp.defunessounds.R;
+import com.paocorp.defunessounds.db.LDFSoundHelper;
+import com.paocorp.defunessounds.models.LDFSound;
 
 import java.util.List;
 
@@ -187,15 +187,18 @@ public class SoundListAdapter extends BaseAdapter {
                             Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
                             RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE, path);
                             RingtoneManager.getRingtone(context, path).play();
+                            alert.dismiss();
+                            Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.ringtoneApplied), Snackbar.LENGTH_LONG);
+                            snackbar.show();
                         }
                     } else {
                         Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
                         RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE, path);
                         RingtoneManager.getRingtone(context, path).play();
+                        alert.dismiss();
+                        Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.ringtoneApplied), Snackbar.LENGTH_LONG);
+                        snackbar.show();
                     }
-                    alert.dismiss();
-                    Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.ringtoneApplied), Snackbar.LENGTH_LONG);
-                    snackbar.show();
                 }
             });
 
@@ -211,15 +214,45 @@ public class SoundListAdapter extends BaseAdapter {
                             Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
                             RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_NOTIFICATION, path);
                             RingtoneManager.getRingtone(context, path).play();
+                            alert.dismiss();
+                            Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.notifApplied), Snackbar.LENGTH_LONG);
+                            snackbar.show();
                         }
                     } else {
                         Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
                         RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_NOTIFICATION, path);
                         RingtoneManager.getRingtone(context, path).play();
+                        alert.dismiss();
+                        Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.notifApplied), Snackbar.LENGTH_LONG);
+                        snackbar.show();
                     }
-                    alert.dismiss();
-                    Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.notifApplied), Snackbar.LENGTH_LONG);
-                    snackbar.show();
+                }
+            });
+
+            Button setAlarm = (Button) v.findViewById(R.id.setAlarm);
+            setAlarm.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        if (!android.provider.Settings.System.canWrite(context)) {
+                            Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+                            intent.setData(Uri.parse(packageRes));
+                            context.startActivity(intent);
+                        } else {
+                            Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
+                            RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_ALARM, path);
+                            RingtoneManager.getRingtone(context, path).play();
+                            Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.alarmApplied), Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                            alert.dismiss();
+                        }
+                    } else {
+                        Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
+                        RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_ALARM, path);
+                        RingtoneManager.getRingtone(context, path).play();
+                        alert.dismiss();
+                        Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.alarmApplied), Snackbar.LENGTH_LONG);
+                        snackbar.show();
+                    }
                 }
             });
 

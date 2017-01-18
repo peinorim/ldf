@@ -4,10 +4,10 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
     defaultConfig {
-        applicationId "com.paocorp.defunessoundboard"
+        applicationId "com.paocorp.defunessounds"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 7
+        versionCode 4
         versionName "1.0"
     }
     buildTypes {

@@ -7,9 +7,9 @@
     <string name="data_imported" translatable="false">com.paocorp.louisdefunes.mhImportedData</string>
     <string name="action_cancel">Annuler</string>
 
-    <string name="interstitial" translatable="false">ca-app-pub-2669557761715669/9024493236</string>
-    <string name="bann" translatable="false">ca-app-pub-2669557761715669/1501226436</string>
-    <string name="store_url" translatable="false">https://play.google.com/store/apps/details?id=com.paocorp.defunessoundboard</string>
+    <string name="interstitial" translatable="false">ca-app-pub-2669557761715669/5533826430</string>
+    <string name="bann" translatable="false">ca-app-pub-2669557761715669/4057093234</string>
+    <string name="store_url" translatable="false">https://play.google.com/store/apps/details?id=com.paocorp.defunessounds</string>
     <string name="site_url" translatable="false">paocorp.com</string>
     <string name="facebook_app_id" translatable="false">914409908597657</string>
     <string name="app_icon_url" translatable="false">https://paocorp.com/res/images/ico/ldf.png</string>
@@ -23,4 +23,6 @@
     <string name="setNotif">Notification</string>
     <string name="ringtoneApplied">Sonnerie appliquée avec succès !</string>
     <string name="notifApplied">Son de notification appliqué avec succès !</string>
+    <string name="setAlarm">Alarme</string>
+    <string name="alarmApplied">Alarme appliquée avec succès !</string>
 </resources>

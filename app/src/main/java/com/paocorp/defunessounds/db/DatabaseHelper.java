@@ -1,4 +1,4 @@
-package com.paocorp.defunessoundboard.db;
+package com.paocorp.defunessounds.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -1,11 +1,11 @@
-package com.paocorp.defunessoundboard.db;
+package com.paocorp.defunessounds.db;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.paocorp.defunessoundboard.models.LDFSound;
+import com.paocorp.defunessounds.models.LDFSound;
 
 import java.util.ArrayList;
 

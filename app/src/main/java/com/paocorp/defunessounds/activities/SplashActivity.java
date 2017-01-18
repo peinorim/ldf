@@ -1,4 +1,4 @@
-package com.paocorp.defunessoundboard.activities;
+package com.paocorp.defunessounds.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,10 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.paocorp.defunessoundboard.R;
-import com.paocorp.defunessoundboard.db.DatabaseHelper;
-import com.paocorp.defunessoundboard.db.LDFSoundHelper;
-import com.paocorp.defunessoundboard.models.LDFSound;
+import com.paocorp.defunessounds.R;
+import com.paocorp.defunessounds.db.DatabaseHelper;
+import com.paocorp.defunessounds.db.LDFSoundHelper;
+import com.paocorp.defunessounds.models.LDFSound;
 
 import java.util.ArrayList;
 
@@ -25,11 +25,6 @@ public class SplashActivity extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-        //ImageView splashImg = (ImageView) findViewById(R.id.splashImg);
-        //Random rand = new Random();
-        //int res = rand.nextInt(11 - 1 + 1) + 1;
-        //splashImg.setImageResource(getResources().getIdentifier("img_" + res, "drawable", getPackageName()));
 
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
