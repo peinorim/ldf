@@ -38,8 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         /******************** TEST ENV ONLY ***********************/
-        //db.execSQL("DROP TABLE IF EXISTS capsules");
-        //db.execSQL("DROP TABLE IF EXISTS capsule_type");
+        //db.execSQL("DROP TABLE IF EXISTS sounds");
         /******************** TEST ENV ONLY ***********************/
         db.execSQL(TABLE_CREATE_SOUNDS);
     }
@@ -59,8 +58,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void startImportation() {
         SQLiteDatabase db = this.getWritableDatabase();
         /******************** TEST ENV ONLY ***********************/
-        //db.execSQL("DROP TABLE IF EXISTS capsules");
-        //db.execSQL("DROP TABLE IF EXISTS capsule_type");
         db.execSQL(TABLE_CREATE_SOUNDS);
         /******************** TEST ENV ONLY ***********************/
         db.execSQL(importSounds());
@@ -95,8 +92,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "(23,'Pouac','audio_23','0')," +
                 "(24,'Praaa tactactac','audio_24','0')," +
                 "(25,'Praaa tactactac 2','audio_25','0')," +
-                "(26,'prui flac','audio_26','0')," +
-                "(27,'prui flac 2 ','audio_27','0')," +
+                "(26,'Prui flac','audio_26','0')," +
+                "(27,'Prui flac 2 ','audio_27','0')," +
                 "(28,'Gngbngngnn','audio_28','0')," +
                 "(29,'Gngngngng 2','audio_29','0')," +
                 "(30,'Gngngngng 3','audio_30','0')," +

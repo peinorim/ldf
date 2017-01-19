@@ -6,13 +6,13 @@
     <string name="app_subname">Sonidos esenciales</string>
     <string name="dialog_title">%1$s\nDefinir como :</string>
     <string name="notifApplied">¡El sonido de notificación se ha aplicado correctamente!</string>
-    <string name="ringtoneApplied">Tono aplicado correctamente!</string>
+    <string name="ringtoneApplied">¡Tono aplicado correctamente!</string>
     <string name="setNotif">Notificación</string>
     <string name="setRingtone">Tono de llamada</string>
     <string name="share">Compartir</string>
     <string name="share_fb">Compartir en Facebook</string>
     <string name="action_settings">Ajustes</string>
     <string name="rate_app">Califica esta aplicación</string>
-    <string name="setAlarm">Alarme</string>
-    <string name="alarmApplied">Alarma aplicado con éxito!</string>
+    <string name="setAlarm">Alarma</string>
+    <string name="alarmApplied">¡Alarma aplicado con éxito!</string>
 </resources>

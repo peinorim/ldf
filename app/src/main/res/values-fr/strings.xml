@@ -13,6 +13,6 @@
     <string name="ringtoneApplied">Sonnerie appliquée avec succès !</string>
     <string name="notifApplied">Son de notification appliqué avec succès !</string>
     <string name="action_settings">Paramètres</string>
-    <string name="setAlarm">Alarma</string>
+    <string name="setAlarm">Alarme</string>
     <string name="alarmApplied">Alarme appliquée avec succès !</string>
 </resources>
