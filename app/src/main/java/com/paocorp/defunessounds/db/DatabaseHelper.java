@@ -37,9 +37,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /******************** TEST ENV ONLY ***********************/
-        //db.execSQL("DROP TABLE IF EXISTS sounds");
-        /******************** TEST ENV ONLY ***********************/
         db.execSQL(TABLE_CREATE_SOUNDS);
     }
 
@@ -52,12 +49,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOUNDS);
+        startImportation();
     }
 
     public void startImportation() {
         SQLiteDatabase db = this.getWritableDatabase();
         /******************** TEST ENV ONLY ***********************/
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOUNDS);
         db.execSQL(TABLE_CREATE_SOUNDS);
         /******************** TEST ENV ONLY ***********************/
         db.execSQL(importSounds());
@@ -67,16 +66,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private String importSounds() {
         return "INSERT INTO " + TABLE_SOUNDS + " (" + COLUMN_SOUND_ID + ", " + COLUMN_SOUND_NAME + ", " + COLUMN_SOUND_RES + ", " + COLUMN_SOUND_FAVORITE + ") VALUES \n" +
-                "(1,'Zip splash','audio_1','0')," +
+                "(1,'Clac ! Allez !','audio_1','0')," +
                 "(2,'Hin hin hin hin','audio_2','0')," +
                 "(3,'He he','audio_3','0')," +
                 "(4,'Oh oh oh ho!','audio_4','0')," +
                 "(5,'Oh oh ooh!','audio_5','0')," +
-                "(6,'Hahahahaha!','audio_6','0')," +
+                "(6,'Hahahahaha !','audio_6','0')," +
                 "(7,'He he hehee','audio_7','0')," +
                 "(8,'Beuahhhhh','audio_8','0')," +
-                "(9,'Vous vous foutez moi?','audio_9','0')," +
-                "(10,'Vous vous foutez moi? 2','audio_10','0')," +
+                "(9,'Vous vous foutez de moi?','audio_9','0')," +
+                "(10,'Vous vous foutez de moi? 2','audio_10','0')," +
                 "(11,'Il me regarde comme ça','audio_11','0')," +
                 "(12,'Là!','audio_12','0')," +
                 "(13,'Kikikikiki','audio_13','0')," +
@@ -130,7 +129,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "(61,'Ma biche','audio_61','0')," +
                 "(62,'Ma biche je peux tout vous expliquer !','audio_62','0')," +
                 "(63,'Oh mon eau minérale !','audio_63','0')";
-
-
     }
 }

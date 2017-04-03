@@ -52,8 +52,10 @@ public class LDFSoundHelper extends DatabaseHelper {
             ldfSound.setName(c.getString(c.getColumnIndex(COLUMN_SOUND_NAME)));
             ldfSound.setRes(c.getString(c.getColumnIndex(COLUMN_SOUND_RES)));
             ldfSound.setFavorite(c.getInt(c.getColumnIndex(COLUMN_SOUND_FAVORITE)));
+            c.close();
             return ldfSound;
         }
+        c.close();
         return null;
     }
 

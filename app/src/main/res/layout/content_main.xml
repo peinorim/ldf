@@ -29,7 +29,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:divider="@null"
-                android:numColumns="2"
                 android:dividerHeight="0dp" />
 
         </LinearLayout>
