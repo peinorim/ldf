@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity
             launchInterstitial();
         }
 
+        FacebookSdk.setApplicationId(getResources().getString(R.string.facebook_app_id));
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
