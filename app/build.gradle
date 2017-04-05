@@ -7,7 +7,7 @@ android {
         applicationId "com.paocorp.defunessounds"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 7
+        versionCode 8
         versionName "1.2"
     }
     buildTypes {

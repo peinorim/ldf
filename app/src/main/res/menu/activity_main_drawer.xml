@@ -6,10 +6,19 @@
             android:title="@string/rate_app" />
     </group>
 
-    <item android:title="@string/share" android:icon="@drawable/ic_share_black_24dp">
+    <item android:title="@string/share">
         <menu>
             <item android:id="@+id/nav_share" android:icon="@drawable/com_facebook_button_icon"
                 android:title="@string/share_fb" />
+        </menu>
+    </item>
+
+    <item android:id="@+id/interest" android:title="@string/interested">
+        <menu>
+            <item android:id="@+id/nav_diner"
+                android:title="@string/dinerName" android:icon="@drawable/ic_get_app_black_24dp" />
+            <item android:id="@+id/nav_pere"
+                android:title="@string/pereName" android:icon="@drawable/ic_get_app_black_24dp" />
         </menu>
     </item>
 

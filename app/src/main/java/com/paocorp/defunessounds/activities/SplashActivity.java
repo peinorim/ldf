@@ -33,7 +33,7 @@ public class SplashActivity extends AppCompatActivity implements NavigationView.
             public void run() {
                 new PrefetchData().execute();
             }
-        }, 3000);
+        }, 2000);
 
     }
 

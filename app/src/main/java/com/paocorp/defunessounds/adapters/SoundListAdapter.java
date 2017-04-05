@@ -40,7 +40,7 @@ public class SoundListAdapter extends BaseAdapter {
     private LDFSoundHelper ldfSoundHelper;
     private String packageRes;
     private String packageRaw;
-    MediaPlayer mp;
+    private MediaPlayer mp;
 
     public SoundListAdapter(Context context, List<LDFSound> ldfSounds) {
         this.context = context;

@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -73,6 +73,30 @@ public class MainActivity extends AppCompatActivity
         soundListView = (ListView) findViewById(R.id.sound_list);
         adapter = new SoundListAdapter(this, listLDFSound);
         soundListView.setAdapter(adapter);
+
+        boolean isDinerInstalled = appInstalledOrNot(getResources().getString(R.string.dinerPackage));
+        boolean isPereInstalled = appInstalledOrNot(getResources().getString(R.string.perePackage));
+
+        if (isDinerInstalled && isPereInstalled) {
+            MenuItem interest = navigationView.getMenu().findItem(R.id.interest);
+            if (interest != null) {
+                interest.setVisible(false);
+            }
+        } else {
+            if (isDinerInstalled) {
+                MenuItem dinerItem = navigationView.getMenu().findItem(R.id.nav_diner);
+                if (dinerItem != null) {
+                    dinerItem.setVisible(false);
+                }
+            }
+
+            if (isPereInstalled) {
+                MenuItem pereItem = navigationView.getMenu().findItem(R.id.nav_pere);
+                if (pereItem != null) {
+                    pereItem.setVisible(false);
+                }
+            }
+        }
 
         if (isNetworkAvailable()) {
             launchInterstitial();
@@ -147,6 +171,10 @@ public class MainActivity extends AppCompatActivity
 
                 shareDialog.show(linkContent);
             }
+        } else if (id == R.id.nav_diner) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.diner_url)));
+        } else if (id == R.id.nav_pere) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.pere_url)));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -178,5 +206,16 @@ public class MainActivity extends AppCompatActivity
                 = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private boolean appInstalledOrNot(String uri) {
+        PackageManager pm = getPackageManager();
+        try {
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

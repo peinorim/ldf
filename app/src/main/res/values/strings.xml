@@ -8,12 +8,11 @@
     <string name="action_cancel">Cancel</string>
 
     <string name="interstitial" translatable="false">ca-app-pub-2669557761715669/5533826430</string>
-    <string name="bann" translatable="false">ca-app-pub-2669557761715669/4057093234</string>
+    <string name="banner_bottom" translatable="false">ca-app-pub-2669557761715669/4057093234</string>
     <string name="store_url" translatable="false">https://play.google.com/store/apps/details?id=com.paocorp.defunessounds</string>
     <string name="site_url" translatable="false">paocorp.com</string>
     <string name="facebook_app_id" translatable="false">914409908597657</string>
     <string name="app_icon_url" translatable="false">https://paocorp.com/res/images/ico/ldf.png</string>
-    <string name="banner_bottom" translatable="false">ca-app-pub-2669557761715669/4195842034</string>
     <string name="rate_app">Rate this application</string>
     <string name="share">Share</string>
     <string name="share_fb">Share on Facebook</string>
@@ -24,5 +23,13 @@
     <string name="ringtoneApplied">Ringtone successfully applied !</string>
     <string name="notifApplied">Notification sound successfully applied !</string>
     <string name="setAlarm">Alarm</string>
+
+    <string name="interested">You might be interested in :</string>
+    <string name="pereName" translatable="false">Le Père Noël est une ordure</string>
+    <string name="perePackage" translatable="false">com.paocorp.leperenoelestuneordure</string>
+    <string name="pere_url" translatable="false">https://play.google.com/store/apps/details?id=com.paocorp.leperenoelestuneordure</string>
+    <string name="dinerName" translatable="false">Le dîner de cons</string>
+    <string name="dinerPackage" translatable="false">com.paocorp.ledinerdecons</string>
+    <string name="diner_url" translatable="false">https://play.google.com/store/apps/details?id=com.paocorp.ledinerdecons</string>
     <string name="alarmApplied">Alarm sound successfully applied !</string>
 </resources>

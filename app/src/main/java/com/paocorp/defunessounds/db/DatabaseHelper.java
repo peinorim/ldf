@@ -37,9 +37,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /******************** TEST ENV ONLY ***********************/
-        //db.execSQL("DROP TABLE IF EXISTS sounds");
-        /******************** TEST ENV ONLY ***********************/
         db.execSQL(TABLE_CREATE_SOUNDS);
     }
 
@@ -52,13 +49,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOUNDS);
+        startImportation();
     }
 
     public void startImportation() {
         SQLiteDatabase db = this.getWritableDatabase();
         /******************** TEST ENV ONLY ***********************/
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOUNDS);
         db.execSQL(TABLE_CREATE_SOUNDS);
         /******************** TEST ENV ONLY ***********************/
         db.execSQL(importSounds());
@@ -73,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "(3,'He he','audio_3','0')," +
                 "(4,'Oh oh oh ho!','audio_4','0')," +
                 "(5,'Oh oh ooh!','audio_5','0')," +
-                "(6,'Hahahahaha!','audio_6','0')," +
+                "(6,'Hahahahaha !','audio_6','0')," +
                 "(7,'He he hehee','audio_7','0')," +
                 "(8,'Beuahhhhh','audio_8','0')," +
                 "(9,'Vous vous foutez de moi?','audio_9','0')," +

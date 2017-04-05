@@ -15,4 +15,5 @@
     <string name="rate_app">Rate this application</string>
     <string name="setAlarm">Alarm</string>
     <string name="alarmApplied">Alarm sound successfully applied !</string>
+    <string name="interested">You might be interested in :</string>
 </resources>

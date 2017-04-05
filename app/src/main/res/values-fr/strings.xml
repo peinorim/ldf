@@ -15,4 +15,5 @@
     <string name="action_settings">Paramètres</string>
     <string name="setAlarm">Alarme</string>
     <string name="alarmApplied">Alarme appliquée avec succès !</string>
+    <string name="interested">Vous pourriez être intéressé par :</string>
 </resources>
