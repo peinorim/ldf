@@ -7,7 +7,7 @@ android {
         applicationId "com.paocorp.defunessounds"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 8
+        versionCode 14
         versionName "1.2"
     }
     buildTypes {
@@ -22,6 +22,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.google.android.gms:play-services-ads:10.2.1'
+    compile 'com.google.android.gms:play-services-ads:10.2.4'
     compile 'com.facebook.android:facebook-android-sdk:4.19.0'
 }

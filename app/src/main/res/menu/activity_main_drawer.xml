@@ -15,6 +15,10 @@
 
     <item android:id="@+id/interest" android:title="@string/interested">
         <menu>
+            <item android:id="@+id/nav_kaam"
+                android:title="@string/kaamName" android:icon="@drawable/ic_get_app_black_24dp" />
+            <item android:id="@+id/nav_bronzes"
+                android:title="@string/bronzesName" android:icon="@drawable/ic_get_app_black_24dp" />
             <item android:id="@+id/nav_diner"
                 android:title="@string/dinerName" android:icon="@drawable/ic_get_app_black_24dp" />
             <item android:id="@+id/nav_pere"

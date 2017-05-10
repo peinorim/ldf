@@ -37,6 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOUNDS);
         db.execSQL(TABLE_CREATE_SOUNDS);
     }
 
@@ -56,6 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void startImportation() {
         SQLiteDatabase db = this.getWritableDatabase();
         /******************** TEST ENV ONLY ***********************/
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SOUNDS);
         db.execSQL(TABLE_CREATE_SOUNDS);
         /******************** TEST ENV ONLY ***********************/
         db.execSQL(importSounds());
@@ -135,7 +137,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "(68,'Que valalaba !','audio_68','0')," +
                 "(69,'Je ne veux pas le savoir !','audio_69','0')," +
                 "(70,'Vous avez assez de mal à comprendre !','audio_70','0')";
-
-
     }
 }

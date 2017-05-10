@@ -142,10 +142,12 @@ public class SoundListAdapter extends BaseAdapter {
                 convertView.setVisibility(View.GONE);
             }
             ViewHolder holderZ = (ViewHolder) convertView.getTag();
-            if (ldfSounds.get(position).isFavorite() == 1) {
-                holderZ.fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
-            } else {
-                holderZ.fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_24dp));
+            if(holderZ != null && holderZ.fav != null) {
+                if (ldfSounds.get(position).isFavorite() == 1) {
+                    holderZ.fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
+                } else {
+                    holderZ.fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_24dp));
+                }
             }
         }
 

@@ -76,8 +76,10 @@ public class MainActivity extends AppCompatActivity
 
         boolean isDinerInstalled = appInstalledOrNot(getResources().getString(R.string.dinerPackage));
         boolean isPereInstalled = appInstalledOrNot(getResources().getString(R.string.perePackage));
+        boolean isBronzesInstalled = appInstalledOrNot(getResources().getString(R.string.bronzesPackage));
+        boolean isKaamInstalled = appInstalledOrNot(getResources().getString(R.string.kaamPackage));
 
-        if (isDinerInstalled && isPereInstalled) {
+        if (isDinerInstalled && isPereInstalled && isBronzesInstalled && isKaamInstalled) {
             MenuItem interest = navigationView.getMenu().findItem(R.id.interest);
             if (interest != null) {
                 interest.setVisible(false);
@@ -94,6 +96,20 @@ public class MainActivity extends AppCompatActivity
                 MenuItem pereItem = navigationView.getMenu().findItem(R.id.nav_pere);
                 if (pereItem != null) {
                     pereItem.setVisible(false);
+                }
+            }
+
+            if (isBronzesInstalled) {
+                MenuItem bronzesItem = navigationView.getMenu().findItem(R.id.nav_bronzes);
+                if (bronzesItem != null) {
+                    bronzesItem.setVisible(false);
+                }
+            }
+
+            if (isKaamInstalled) {
+                MenuItem kaamItem = navigationView.getMenu().findItem(R.id.nav_kaam);
+                if (kaamItem != null) {
+                    kaamItem.setVisible(false);
                 }
             }
         }
@@ -175,6 +191,10 @@ public class MainActivity extends AppCompatActivity
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.diner_url)));
         } else if (id == R.id.nav_pere) {
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.pere_url)));
+        } else if (id == R.id.nav_bronzes) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.bronzes_url)));
+        } else if (id == R.id.nav_kaam) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.kaam_url)));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
