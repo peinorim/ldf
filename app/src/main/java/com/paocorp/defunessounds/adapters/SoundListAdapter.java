@@ -1,18 +1,25 @@
 package com.paocorp.defunessounds.adapters;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.app.AlertDialog;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +33,17 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.paocorp.defunessounds.R;
+import com.paocorp.defunessounds.activities.MainActivity;
 import com.paocorp.defunessounds.db.LDFSoundHelper;
 import com.paocorp.defunessounds.models.LDFSound;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
@@ -39,7 +54,6 @@ public class SoundListAdapter extends BaseAdapter {
     private List<LDFSound> ldfSounds;
     private LDFSoundHelper ldfSoundHelper;
     private String packageRes;
-    private String packageRaw;
     private MediaPlayer mp;
 
     public SoundListAdapter(Context context, List<LDFSound> ldfSounds) {
@@ -47,7 +61,6 @@ public class SoundListAdapter extends BaseAdapter {
         this.ldfSounds = ldfSounds;
         this.ldfSoundHelper = new LDFSoundHelper(context);
         packageRes = "package:" + context.getPackageName();
-        packageRaw = "android.resource://" + context.getPackageName() + "/raw/";
     }
 
     @Override
@@ -142,7 +155,7 @@ public class SoundListAdapter extends BaseAdapter {
                 convertView.setVisibility(View.GONE);
             }
             ViewHolder holderZ = (ViewHolder) convertView.getTag();
-            if(holderZ != null && holderZ.fav != null) {
+            if (holderZ != null && holderZ.fav != null) {
                 if (ldfSounds.get(position).isFavorite() == 1) {
                     holderZ.fav.setBackground(context.getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
                 } else {
@@ -177,6 +190,16 @@ public class SoundListAdapter extends BaseAdapter {
             lp.width = WindowManager.LayoutParams.MATCH_PARENT;
             lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (ContextCompat.checkSelfPermission(context,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions((Activity) context,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            1234);
+                }
+            }
+
             Button setRingtone = (Button) v.findViewById(R.id.setRingtone);
             setRingtone.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -186,20 +209,26 @@ public class SoundListAdapter extends BaseAdapter {
                             intent.setData(Uri.parse(packageRes));
                             context.startActivity(intent);
                         } else {
-                            Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
-                            RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE, path);
-                            RingtoneManager.getRingtone(context, path).play();
+                            if (setFile(ldfSound1, RingtoneManager.TYPE_RINGTONE)) {
+                                alert.dismiss();
+                                Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.ringtoneApplied), Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            } else {
+                                alert.dismiss();
+                                Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.errorApplied), Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            }
+                        }
+                    } else {
+                        if (setFile(ldfSound1, RingtoneManager.TYPE_RINGTONE)) {
                             alert.dismiss();
                             Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.ringtoneApplied), Snackbar.LENGTH_LONG);
                             snackbar.show();
+                        } else {
+                            alert.dismiss();
+                            Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.errorApplied), Snackbar.LENGTH_LONG);
+                            snackbar.show();
                         }
-                    } else {
-                        Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
-                        RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_RINGTONE, path);
-                        RingtoneManager.getRingtone(context, path).play();
-                        alert.dismiss();
-                        Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.ringtoneApplied), Snackbar.LENGTH_LONG);
-                        snackbar.show();
                     }
                 }
             });
@@ -213,20 +242,26 @@ public class SoundListAdapter extends BaseAdapter {
                             intent.setData(Uri.parse(packageRes));
                             context.startActivity(intent);
                         } else {
-                            Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
-                            RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_NOTIFICATION, path);
-                            RingtoneManager.getRingtone(context, path).play();
+                            if (setFile(ldfSound1, RingtoneManager.TYPE_NOTIFICATION)) {
+                                alert.dismiss();
+                                Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.notifApplied), Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            } else {
+                                alert.dismiss();
+                                Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.errorApplied), Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            }
+                        }
+                    } else {
+                        if (setFile(ldfSound1, RingtoneManager.TYPE_NOTIFICATION)) {
                             alert.dismiss();
                             Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.notifApplied), Snackbar.LENGTH_LONG);
                             snackbar.show();
+                        } else {
+                            alert.dismiss();
+                            Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.errorApplied), Snackbar.LENGTH_LONG);
+                            snackbar.show();
                         }
-                    } else {
-                        Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
-                        RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_NOTIFICATION, path);
-                        RingtoneManager.getRingtone(context, path).play();
-                        alert.dismiss();
-                        Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.notifApplied), Snackbar.LENGTH_LONG);
-                        snackbar.show();
                     }
                 }
             });
@@ -240,20 +275,26 @@ public class SoundListAdapter extends BaseAdapter {
                             intent.setData(Uri.parse(packageRes));
                             context.startActivity(intent);
                         } else {
-                            Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
-                            RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_ALARM, path);
-                            RingtoneManager.getRingtone(context, path).play();
-                            Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.alarmApplied), Snackbar.LENGTH_LONG);
-                            snackbar.show();
-                            alert.dismiss();
+                            if (setFile(ldfSound1, RingtoneManager.TYPE_ALARM)) {
+                                alert.dismiss();
+                                Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.alarmApplied), Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            } else {
+                                alert.dismiss();
+                                Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.errorApplied), Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            }
                         }
                     } else {
-                        Uri path = Uri.parse(packageRaw + ldfSound1.getRes());
-                        RingtoneManager.setActualDefaultRingtoneUri(context, RingtoneManager.TYPE_ALARM, path);
-                        RingtoneManager.getRingtone(context, path).play();
-                        alert.dismiss();
-                        Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.alarmApplied), Snackbar.LENGTH_LONG);
-                        snackbar.show();
+                        if (setFile(ldfSound1, RingtoneManager.TYPE_ALARM)) {
+                            alert.dismiss();
+                            Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.alarmApplied), Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        } else {
+                            alert.dismiss();
+                            Snackbar snackbar = Snackbar.make(convertView, context.getResources().getString(R.string.errorApplied), Snackbar.LENGTH_LONG);
+                            snackbar.show();
+                        }
                     }
                 }
             });
@@ -268,6 +309,25 @@ public class SoundListAdapter extends BaseAdapter {
         }
     }
 
+    private boolean copyFileUsingStream(String source, File dest) throws IOException {
+        InputStream is;
+        OutputStream os;
+        try {
+            is = context.getResources().openRawResource(context.getResources().getIdentifier(source, "raw", context.getPackageName()));
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+            is.close();
+            os.close();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) context.getSystemService(CONNECTIVITY_SERVICE);
@@ -277,5 +337,61 @@ public class SoundListAdapter extends BaseAdapter {
 
     static class ViewHolder {
         ImageButton fav;
+    }
+
+    private boolean setFile(LDFSound ldfSound1, int type) {
+        String env = Environment.DIRECTORY_RINGTONES;
+        if (type == RingtoneManager.TYPE_ALARM) {
+            env = Environment.DIRECTORY_ALARMS;
+        } else if (type == RingtoneManager.TYPE_NOTIFICATION) {
+            env = Environment.DIRECTORY_NOTIFICATIONS;
+        }
+
+        String path = Environment.getExternalStoragePublicDirectory(env).getAbsolutePath();
+        String filename = context.getPackageName() + "_" + ldfSound1.getRes();
+
+        boolean exists = (new File(path)).exists();
+        if (!exists) {
+            new File(path).mkdirs();
+        }
+        File actualFile = new File(path, filename);
+
+        try {
+            if (copyFileUsingStream(ldfSound1.getRes(), actualFile)) {
+                //We now create a new content values object to store all the information
+                //about the ringtone.
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.MediaColumns.DATA, actualFile.getAbsolutePath());
+                values.put(MediaStore.MediaColumns.TITLE, ldfSound1.getName());
+                values.put(MediaStore.MediaColumns.SIZE, actualFile.length());
+                values.put(MediaStore.MediaColumns.MIME_TYPE, "audio/mp3");
+                values.put(MediaStore.Audio.AudioColumns.ARTIST, context.getString(R.string.app_name));
+                values.put(MediaStore.Audio.AudioColumns.IS_RINGTONE, type == RingtoneManager.TYPE_RINGTONE);
+                values.put(MediaStore.Audio.AudioColumns.IS_NOTIFICATION, type == RingtoneManager.TYPE_NOTIFICATION);
+                values.put(MediaStore.Audio.AudioColumns.IS_ALARM, type == RingtoneManager.TYPE_ALARM);
+                values.put(MediaStore.Audio.AudioColumns.IS_MUSIC, false);
+
+                //Work with the content resolver now
+                //First get the file we may have added previously and delete it,
+                //otherwise we will fill up the ringtone manager with a bunch of copies over time.
+                Uri uri = MediaStore.Audio.Media.getContentUriForPath(actualFile.getAbsolutePath());
+                context.getContentResolver().delete(uri, MediaStore.MediaColumns.DATA + "=\"" + actualFile.getAbsolutePath() + "\"", null);
+
+                //Ok now insert it
+                Uri newUri = context.getContentResolver().insert(uri, values);
+
+                //Ok now set the ringtone from the content manager's uri, NOT the file's uri
+                RingtoneManager.setActualDefaultRingtoneUri(
+                        context,
+                        type,
+                        newUri
+                );
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }
